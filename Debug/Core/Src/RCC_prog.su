@@ -1,0 +1,5 @@
+../Core/Src/RCC_prog.c:11:6:M_RCC_Void_EnableClock	16	static
+../Core/Src/RCC_prog.c:29:6:M_RCC_Void_DisableClock	16	static
+../Core/Src/RCC_prog.c:47:6:M_RCC_Void_EnableSecuritySystem	4	static
+../Core/Src/RCC_prog.c:52:6:M_RCC_Void_DisableSecuritySystem	4	static
+../Core/Src/RCC_prog.c:58:6:M_RCC_Void_ClkSourceInit	4	static

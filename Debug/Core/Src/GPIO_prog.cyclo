@@ -1,0 +1,7 @@
+../Core/Src/GPIO_prog.c:4:6:M_GPIO_void_SetPinMode	14
+../Core/Src/GPIO_prog.c:83:4:M_GPIO_void_ReadPin	6
+../Core/Src/GPIO_prog.c:108:6:M_GPIO_void_WritePin	13
+../Core/Src/GPIO_prog.c:163:6:M_GPIO_void_WritePinBSRR	13
+../Core/Src/GPIO_prog.c:221:6:M_GPIO_void_WritePinBRR	6
+../Core/Src/GPIO_prog.c:247:6:M_GPIO_void_LockPin	7
+../Core/Src/GPIO_prog.c:272:6:M_GPIO_void_InputPullUp_PullDown	13

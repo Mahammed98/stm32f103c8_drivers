@@ -1,0 +1,6 @@
+../Drivers/CMSIS/Include/core_cm3.h:1511:22:__NVIC_EnableIRQ	2
+../Drivers/CMSIS/Include/core_cm3.h:1639:22:__NVIC_SetPriority	2
+../Core/Src/main.c:70:5:main	1
+../Core/Src/main.c:101:6:App_void_ToggleLed	5
+../Core/Src/main.c:146:6:SystemClock_Config	3
+../Core/Src/main.c:217:6:Error_Handler	1
