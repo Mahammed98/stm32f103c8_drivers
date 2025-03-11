@@ -10,4 +10,6 @@
 #define DMA_CONFIG
 
 
+#define DMA_MODE
+
 #endif

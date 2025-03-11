@@ -23,6 +23,7 @@
 #include "RCC_interface.h"
 #include "EXTI_interface.h"
 #include "Systick_interface.h"
+#include "DMA_interface.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -66,6 +67,9 @@ void SystemClock_Config(void);
   * @retval int
   */
 
+volatile u32 arr1[500];
+volatile u32 arr2[500];
+
 void App_void_ToggleLed(void);
 void fun(void);
 
@@ -75,14 +79,33 @@ int main(void)
   //HAL_Init();
   /* Configure the system clock */
   //SystemClock_Config();
-  M_SysTick_void_Init();
-  M_SysTick_voidSetIntervalPeriodic(500000,fun);
+  //M_SysTick_void_Init();
+  //M_SysTick_voidSetIntervalPeriodic(500000,fun);
   M_RCC_Void_ClkSourceInit();
   M_RCC_Void_EnableClock(APB2,IOPAEN);
+  M_RCC_Void_EnableClock(AHB1,DMA1EN);    // enable DMA
   //MX_GPIO_Init();
   M_GPIO_void_SetPinMode(PORTA_GPIO, 4, OUTPUT_MAX_SPEED_10MHZ, GPO_PUSH_PULL);  // output
+  M_GPIO_void_SetPinMode(PORTA_GPIO, 3, OUTPUT_MAX_SPEED_10MHZ, GPO_PUSH_PULL);  // output
 
+  /*  initialize DMA */
+  M_DMA_void_Init(1,MEMORY_TO_MEMORY_MODE, READ_FROM_PERIPHERAL, PERIPHERAL_SIZE_32_BIT, MEMORY_SIZE_32_BIT, CHANNEL_PRIORITY_HIGH);
+  M_DMA_void_SendData(1, arr1, arr2, 500);
+  M_DMA_void_SetCallBack(fun,1);
+  /*   enable interrupt for DMA  */
+  NVIC_EnableIRQ(DMA1_Channel1_IRQn);
+  NVIC_SetPriority(DMA1_Channel1_IRQn,1);
+  __enable_irq();   //enable global interrupt
 
+  /*  fill source array */
+for (u16 i = 0; i < 499; i++)
+{
+	arr1[i] = i;
+}
+	arr1[499] = 1;
+
+	M_DMA_void_EnableDma(1);
+	//while(M_DMA_u8_ReadTransferCompleteFlag(1) == 0);
 
 
   while(1)
@@ -96,7 +119,12 @@ int main(void)
 
 void fun(void)
 {
-	__TOG_BIT(GPIO_A->GPIOx_ODR,4);
+	if(M_DMA_u8_ReadTransferCompleteFlag(1))
+	{
+		M_GPIO_void_WritePinBSRR(PORTA_GPIO,3,arr2[499]);   // indicator for transferring all data reaching to end of arr1
+		M_GPIO_void_WritePinBSRR(PORTA_GPIO,4,HIGH);
+		M_DMA_void_ClearTransferCompleteFlag(1);  // clear GIF, AND TCF
+	}
 }
 
 

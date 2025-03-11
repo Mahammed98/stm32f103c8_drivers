@@ -17,6 +17,7 @@ typedef struct channel_tdef
 	volatile u32 DMA_CNDTR;
 	volatile u32 DMA_CPAR;
 	volatile u32 DMA_CMAR;
+	volatile u32 RESERVED;
 
 }Channel_Regs_Tdef;
 

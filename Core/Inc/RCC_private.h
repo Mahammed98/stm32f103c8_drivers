@@ -45,11 +45,14 @@ typedef struct rcc_tdef{
 #define  __RCC            ((volatile struct rcc_tdef*)RCC_BASE_ADDRESS)
 
 ////////////////// RCC_AHBENR register bits  ///////////////////////
+#define DMA1EN           0
 #define DMA2EN           1
 #define SRAMEN           2
 #define FLITFEN          4
 #define CRCEN            6
 #define FSMCEN           8
+#define SDIOEN           10
+
 ////////////////// RCC_APB2ENR register bits  ///////////////////////
 #define AFIOEN           0
 #define IOPAEN           2

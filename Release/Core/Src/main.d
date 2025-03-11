@@ -29,7 +29,9 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/GPIO_interface.h ../Core/Inc/AFIO_interface.h \
  ../Core/Inc/AFIO_config.h ../Core/Inc/AFIO_private.h \
  ../Core/Inc/Systick_interface.h ../Core/Inc/bitMath.h \
- ../Core/Inc/SysTick_private.h ../Core/Inc/SysTick_config.h
+ ../Core/Inc/SysTick_private.h ../Core/Inc/SysTick_config.h \
+ ../Core/Inc/DMA_interface.h ../Core/Inc/DMA_config.h \
+ ../Core/Inc/DMA_private.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Core/Inc/stm32f1xx_hal_conf.h:
@@ -73,3 +75,6 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/bitMath.h:
 ../Core/Inc/SysTick_private.h:
 ../Core/Inc/SysTick_config.h:
+../Core/Inc/DMA_interface.h:
+../Core/Inc/DMA_config.h:
+../Core/Inc/DMA_private.h:
